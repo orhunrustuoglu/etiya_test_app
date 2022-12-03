@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import '/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user.dart';
@@ -11,9 +13,7 @@ class UserCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: GestureDetector(
-        onTap: () => {
-          //TODO navigate
-        },
+        onTap: () => context.router.push(UserDetailsScreen(user: user)),
         child: Card(
             elevation: 3,
             child: Padding(

@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:etiya_test_app/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,12 +13,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-        const Duration(seconds: 1),
-        () => {
-              //TODO navigate
-              //context.router.replace(const MainScreen())
-            });
+    Future.delayed(const Duration(seconds: 1),
+        () => {context.router.replace(const MainScreen())});
   }
 
   @override
