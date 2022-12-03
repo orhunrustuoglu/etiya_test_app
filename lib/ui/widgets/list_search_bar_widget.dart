@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ListSearchBarWidget extends StatelessWidget {
-  const ListSearchBarWidget({Key? key}) : super(key: key);
+  final Function onChanged;
+  const ListSearchBarWidget({Key? key, required this.onChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,7 @@ class ListSearchBarWidget extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 20),
       child: TextField(
         keyboardType: TextInputType.text,
-        onSubmitted: (query) {
-          //TODO filter list items from bloc
-        },
+        onChanged: (value) => onChanged(value),
         cursorColor: Colors.grey,
         decoration: InputDecoration(
             fillColor: Colors.white,

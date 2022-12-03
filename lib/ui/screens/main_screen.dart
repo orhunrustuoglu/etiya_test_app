@@ -4,6 +4,8 @@ import 'package:etiya_test_app/ui/widgets/user_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/user.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -12,14 +14,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () {
-      //TODO fetch data
-    });
-  }
-
+  String _query = "";
   @override
   Widget build(BuildContext context) {
     //TODO add splash screen with the initState comment "Might handle requests here later on..."
@@ -34,7 +29,13 @@ class _MainScreenState extends State<MainScreen> {
         body: SafeArea(
             child: Column(
           children: [
-            const ListSearchBarWidget(),
+            ListSearchBarWidget(
+              onChanged: (query) {
+                setState(() {
+                  _query = query;
+                });
+              },
+            ),
             Expanded(
               // keep expanded here so that screen does not overflow
               child:
@@ -44,11 +45,15 @@ class _MainScreenState extends State<MainScreen> {
                       child: CircularProgressIndicator.adaptive());
                 }
                 if (state is UserLoaded) {
+                  List<User> filteredList = state.users
+                      .where((u) => u.userName
+                          .toLowerCase()
+                          .contains(_query.toLowerCase()))
+                      .toList();
                   return ListView.builder(
-                      shrinkWrap: true, //TODO remove later
-                      itemCount: state.users.length,
+                      itemCount: filteredList.length,
                       itemBuilder: ((context, index) {
-                        return UserCardWidget(user: state.users[index]);
+                        return UserCardWidget(user: filteredList[index]);
                       }));
                 } else {
                   return const Center(
