@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        title: 'Flutter Demo',
         theme: Theme.of(context).copyWith(
             colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: const Color(0xff242441), //etiya blue

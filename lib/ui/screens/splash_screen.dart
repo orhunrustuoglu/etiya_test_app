@@ -20,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        key: const Key("logoContainer"),
         padding: const EdgeInsets.symmetric(horizontal: 35),
         alignment: Alignment.center,
         color: Theme.of(context).colorScheme.primary,

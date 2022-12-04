@@ -42,7 +42,9 @@ class _MainScreenState extends State<MainScreen> {
                   BlocBuilder<UserBloc, UserState>(builder: (context, state) {
                 if (state is UserInitial) {
                   return const Center(
-                      child: CircularProgressIndicator.adaptive());
+                      child: CircularProgressIndicator.adaptive(
+                    key: Key("circularProgressIndicator"),
+                  ));
                 }
                 if (state is UserLoaded) {
                   List<User> filteredList = state.users
@@ -53,7 +55,9 @@ class _MainScreenState extends State<MainScreen> {
                   return ListView.builder(
                       itemCount: filteredList.length,
                       itemBuilder: ((context, index) {
-                        return UserCardWidget(user: filteredList[index]);
+                        return UserCardWidget(
+                            key: Key(index.toString()),
+                            user: filteredList[index]);
                       }));
                 } else {
                   return const Center(

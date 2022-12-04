@@ -1,30 +1,49 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:etiya_test_app/models/address.dart';
+import 'package:etiya_test_app/models/company.dart';
+import 'package:etiya_test_app/models/geo.dart';
+import 'package:etiya_test_app/models/user.dart';
+import 'package:etiya_test_app/ui/widgets/user_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:etiya_test_app/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  testWidgets('Navigate to user details.', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Directionality(
+        textDirection: TextDirection.ltr,
+        child: SizedBox(
+          width: 200,
+          height: 100,
+          child: UserCardWidget(
+            useAutoRouter: false,
+            user: User(
+                id: 1,
+                name: "Leanne Graham",
+                userName: "Bret",
+                email: "Sincere@april.biz",
+                phone: "1-770-736-8031 x56442",
+                website: "hildegard.org",
+                address: Address(
+                    street: "Kulas Light",
+                    suite: "Apt. 556",
+                    city: "Gwenborough",
+                    zipcode: "92998-3874",
+                    geo: Geo(lat: "-37.3159", lng: "81.1496")),
+                company: Company(
+                    name: "Romaguera-Crona",
+                    catchPhrase: "Multi-layered client-server neural-net",
+                    bs: "harness real-time e-markets")),
+          ),
+        ),
+      ),
+    ));
+    await tester.pumpAndSettle(); // wait for the render
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final userCard = find.text("Leanne Graham",
+        skipOffstage: false); // find the user card with the user name "Bret"
+    await tester.tap(userCard); // navigate to the user details screen
+    await tester.pumpAndSettle(); // wait for the navigation to end
+    expect(find.text("hildegard.org"),
+        findsOneWidget); // check if the details screen is navigated to
   });
 }

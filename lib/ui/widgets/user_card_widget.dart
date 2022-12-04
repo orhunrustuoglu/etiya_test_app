@@ -1,19 +1,32 @@
 import 'package:auto_route/auto_route.dart';
 import '/router.gr.dart';
 import 'package:flutter/material.dart';
-
+import '../../ui/screens/user_details_screen.dart'
+    as UserDetailsScreenWidget; // for widget test purposes
 import '../../models/user.dart';
 
 class UserCardWidget extends StatelessWidget {
   final User user;
-  const UserCardWidget({Key? key, required this.user}) : super(key: key);
+  final bool useAutoRouter; // for widget test purposes
+
+  const UserCardWidget(
+      {Key? key, required this.user, this.useAutoRouter = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: GestureDetector(
-        onTap: () => context.router.push(UserDetailsScreen(user: user)),
+    return GestureDetector(
+      onTap: useAutoRouter
+          ? () => context.router.push(UserDetailsScreen(user: user))
+          : () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  // for widget test purposes
+                  builder: (context) =>
+                      UserDetailsScreenWidget.UserDetailsScreen(user: user),
+                ),
+              ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Card(
             elevation: 3,
             child: Padding(

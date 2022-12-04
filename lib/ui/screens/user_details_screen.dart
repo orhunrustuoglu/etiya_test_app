@@ -17,6 +17,7 @@ class UserDetailsScreen extends StatelessWidget {
           child: ListView(
         children: [
           SingleDetailCardWidget(label: "User Id: ", value: user.id.toString()),
+          SingleDetailCardWidget(label: "Name: ", value: user.name),
           SingleDetailCardWidget(label: "Email: ", value: user.email),
           SingleDetailCardWidget(label: "Phone: ", value: user.phone),
           SingleDetailCardWidget(label: "Website: ", value: user.website),
