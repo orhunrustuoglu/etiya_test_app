@@ -1,7 +1,5 @@
 import 'package:etiya_test_app/bloc/user_bloc.dart';
 import 'package:etiya_test_app/router.gr.dart';
-import 'package:etiya_test_app/ui/screens/main_screen.dart';
-import 'package:etiya_test_app/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

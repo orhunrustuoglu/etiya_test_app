@@ -13,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    //Might handle requests here later on...
     Future.delayed(const Duration(seconds: 1),
         () => {context.router.replace(const MainScreen())});
   }

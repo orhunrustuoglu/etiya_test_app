@@ -1,5 +1,3 @@
-import 'package:etiya_test_app/models/geo.dart';
-
 import 'address.dart';
 import 'company.dart';
 import 'package:equatable/equatable.dart';
@@ -10,7 +8,7 @@ class User extends Equatable {
   final Address address;
   final Company company;
 
-  User({
+  const User({
     required this.id,
     required this.name,
     required this.userName,

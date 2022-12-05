@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
@@ -46,12 +44,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                   )));
             });
             emit(UserLoaded(users: users));
-            print(users.toString());
           });
-        } catch (e) {
-          print("Something went wrong...");
-          print(e);
-        }
+        } catch (e) {}
       });
     });
   }

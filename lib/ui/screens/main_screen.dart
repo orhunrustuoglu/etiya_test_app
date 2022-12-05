@@ -17,7 +17,6 @@ class _MainScreenState extends State<MainScreen> {
   String _query = "";
   @override
   Widget build(BuildContext context) {
-    //TODO add splash screen with the initState comment "Might handle requests here later on..."
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

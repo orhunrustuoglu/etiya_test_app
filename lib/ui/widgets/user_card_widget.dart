@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import '/router.gr.dart';
 import 'package:flutter/material.dart';
 import '../../ui/screens/user_details_screen.dart'
-    as UserDetailsScreenWidget; // for widget test purposes
+    as user_details_screen_widget; // for widget test purposes
 import '../../models/user.dart';
 
 class UserCardWidget extends StatelessWidget {
@@ -22,7 +22,7 @@ class UserCardWidget extends StatelessWidget {
                 MaterialPageRoute(
                   // for widget test purposes
                   builder: (context) =>
-                      UserDetailsScreenWidget.UserDetailsScreen(user: user),
+                      user_details_screen_widget.UserDetailsScreen(user: user),
                 ),
               ),
       child: Padding(
